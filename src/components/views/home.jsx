@@ -21,7 +21,7 @@ export default class Home extends Component {
     return (
         <div className="main-container">
             <h2>Hello</h2>
-            
+        
         </div>
 
     )
