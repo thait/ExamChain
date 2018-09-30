@@ -1,5 +1,4 @@
 pragma solidity ^0.4.0;
-pragma experimental ABIEncoderV2; 
 
 contract ExamChain {
 
@@ -18,7 +17,7 @@ struct Student
 }
 
 mapping(address=>Student) ManageStudent;
-mapping(address=>Exam[]) ManageExam;
+mapping(address=>Exam) ManageExam;
  
 constructor() public
 {
@@ -32,12 +31,18 @@ function Registration(string _name,string _email, string _phone) public
     
 function SubmitExam(string _id,string _name,string _scoreDetail,string _score) public
 {
-    ManageExam[msg.sender].push(Exam(_id,_name,_scoreDetail,_score));
+    ManageExam[msg.sender] = (Exam(_id,_name,_scoreDetail,_score));
 }
 
-function GetResult() public view returns(Exam[])
+
+function GetResultByAddress(address _student) public view returns(string,string,string,string)
 {
-    return ManageExam[msg.sender];
+    return (ManageExam[_student].ID,ManageExam[_student].Name,ManageExam[_student].ScoreDetail,ManageExam[_student].Score);
+}
+
+function GetStudentInfo() public view returns(string,string,string)
+{
+    return (ManageStudent[msg.sender].Name,ManageStudent[msg.sender].Email,ManageStudent[msg.sender].Phone);
 }
 
 }

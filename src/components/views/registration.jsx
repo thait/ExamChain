@@ -5,9 +5,10 @@ import Web3 from 'web3';
 import './../../stylesheets/react-datepicker.scss'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import '../../stylesheets/registration.scss';
 var $ = require ('jquery')
 
-export default class Home extends Component {  
+export default class Registration extends Component {  
     constructor(props) {
       super(props)
       this.state = {
@@ -16,19 +17,22 @@ export default class Home extends Component {
         confirmPassword: '',
       }
       this.handleClick = this.handleClick.bind(this);
-      this.registerSubmit = this.registerSubmit.bind(this);
-      this.loginSubmit = this.loginSubmit.bind(this);
-      window.a = this.state
   }   
-  registerSubmit(event) {
-    console.log(event)
-    event.preventDefault();
+ 
+  onChange(e) {
+      console.log(this)
+    this.setState({ [e.target.name]: e.target.value });
   }
-  loginSubmit(event) {
-    console.log(event)
-    event.preventDefault();
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    //handle form processing here....
   }
-  handleClick(e) {
+  componentDidMount () {
+    
+}
+handleClick(e) {
     $('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
@@ -45,6 +49,7 @@ export default class Home extends Component {
 	});
 
 };
+
   render() {
     const { email, password, confirmPassword } = this.state;
 
@@ -67,7 +72,7 @@ export default class Home extends Component {
                           <div className="panel-body">
                             <div className="row">
                               <div className="col-lg-12">
-                                <form id="login-form" onSubmit={this.loginSubmit} role="form" style={{display: 'block'}}>
+                                <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style={{display: 'block'}}>
                                   <div className="form-group">
                                     <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" defaultValue />
                                   </div>
@@ -84,12 +89,12 @@ export default class Home extends Component {
                                   </div>
                                  
                                 </form>
-                                <form id="register-form" onSubmit={this.registerSubmit} role="form" style={{display: 'none'}}>
+                                <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style={{display: 'none'}}>
                                   <div className="form-group">
-                                    <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" defaultValue='P.Jonh' />
+                                    <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" defaultValue />
                                   </div>
                                   <div className="form-group">
-                                    <input type="email" name="email" id="email" tabIndex={1} className="form-control" placeholder="Email Address" defaultValue="jphan@gmail.com"/>
+                                    <input type="email" name="email" id="email" tabIndex={1} className="form-control" placeholder="Email Address" defaultValue />
                                   </div>
                                   <div className="form-group">
                                     <input type="password" name="password" id="password" tabIndex={2} className="form-control" placeholder="Password" />
@@ -114,5 +119,5 @@ export default class Home extends Component {
                   </div>
                 
               );
-}
-}
+              }
+};
