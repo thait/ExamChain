@@ -67,7 +67,7 @@ radioHandleEvent(event){
  {
     var self = this
           let ID = "DFJDHFJ"
-          let Name = "Math"
+          let Name = "English"
           let ScoreDetail = "1C-2D-3B-4C-5A"
           let Score = "9.25"
           this.state.examInstance.SubmitExam(ID,Name,ScoreDetail,Score, function (error, result) {
