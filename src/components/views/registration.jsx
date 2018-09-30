@@ -72,7 +72,7 @@ handleClick(e) {
                           <div className="panel-body">
                             <div className="row">
                               <div className="col-lg-12">
-                                <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style={{display: 'block'}}>
+                                <form id="login-form" method="post" role="form" style={{display: 'block'}}>
                                   <div className="form-group">
                                     <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" defaultValue />
                                   </div>
@@ -89,7 +89,7 @@ handleClick(e) {
                                   </div>
                                  
                                 </form>
-                                <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style={{display: 'none'}}>
+                                <form id="register-form" method="post" role="form" style={{display: 'none'}}>
                                   <div className="form-group">
                                     <input type="text" name="username" id="username" tabIndex={1} className="form-control" placeholder="Username" defaultValue />
                                   </div>

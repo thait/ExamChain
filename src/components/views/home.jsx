@@ -6,6 +6,10 @@ import './../../stylesheets/react-datepicker.scss'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 var $ = require ('jquery')
+import examABI from '../../../abi/examABI.json';
+
+const ExamSCAddr = '0x2e6f0568da2c5e4a5f05c04f2956dd7d089c73cb'
+const Addr = '0x60e23c4D0Ad3143465C1D0f9898E4e51A50b8e62'
 
 export default class Home extends Component {  
     constructor(props) {
@@ -18,11 +22,25 @@ export default class Home extends Component {
       this.handleClick = this.handleClick.bind(this);
       this.registerSubmit = this.registerSubmit.bind(this);
       this.loginSubmit = this.loginSubmit.bind(this);
+
+      if (typeof web3 != 'undefined') {
+        console.log("Using web3 detected from external source like Metamask")
+        this.web3 = new Web3(web3.currentProvider)
+    } else {
+        console.log("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+        this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+    }
+    const examontract = web3.eth.contract(examABI)
+    this.state.examInstance = examontract.at(ExamSCAddr)
       window.a = this.state
   }   
   registerSubmit(event) {
     console.log(event)
+
+    
+
     event.preventDefault();
+
   }
   loginSubmit(event) {
     console.log(event)
